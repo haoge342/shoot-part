@@ -1,0 +1,3 @@
+/home/haoge342/shoot-part/build/CMakeFiles/shoot-part.dir
+/home/haoge342/shoot-part/build/CMakeFiles/edit_cache.dir
+/home/haoge342/shoot-part/build/CMakeFiles/rebuild_cache.dir

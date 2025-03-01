@@ -1,0 +1,1 @@
+/usr/bin/c++ "CMakeFiles/shoot-part.dir/main.cpp.o" "CMakeFiles/shoot-part.dir/particle.cpp.o" -o shoot-part  /usr/lib/x86_64-linux-gnu/libsfml-graphics.so.2.5.1 /usr/lib/x86_64-linux-gnu/libsfml-window.so.2.5.1 /usr/lib/x86_64-linux-gnu/libsfml-system.so.2.5.1
