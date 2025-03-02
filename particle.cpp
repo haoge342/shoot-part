@@ -2,6 +2,7 @@
 #include <cmath>
 #include <cstdlib>
 
+// MARK: constructor
 Particle::Particle(float x, float y, float targetX, float targetY, float globalAnimationSpeed) {
     shape.setRadius(5);
     shape.setFillColor(sf::Color(rand() % 255, rand() % 255, rand() % 255));
@@ -20,7 +21,7 @@ Particle::Particle(float x, float y, float targetX, float targetY, float globalA
     velocity = direction * animationSpeed * initialSpeed;
 }
 
-// collision detection
+// MARK: collision detection
 bool Particle::checkCollision(Particle& other){
     float dx = shape.getPosition().x - other.shape.getPosition().x;
     float dy = shape.getPosition().y - other.shape.getPosition().y;
@@ -34,7 +35,7 @@ bool Particle::checkCollision(Particle& other){
     return false;
 }
 
-// collision resolution
+// MARK:  collision resolution
 void Particle::resolveCollision(Particle& other) {
     sf::Vector2f delta = shape.getPosition() - other.shape.getPosition();
     
@@ -50,7 +51,7 @@ void Particle::resolveCollision(Particle& other) {
 
     if (speed > 0) return; // moving away
 
-    float restitution = 0.1f;
+    float restitution = 0.7f;
     float impulse = ((1.0f + restitution) * speed) / 2.0f;
 
     if (std::abs(impulse) < 0.1f) return; // avoid tiny impulses
@@ -64,6 +65,7 @@ void Particle::update(float dt, sf::RenderWindow& window, std::vector<Particle>&
     shape.move(velocity * dt);
 
     const float DAMPING_FACTOR = 0.6f;
+    const float GROUND_FRICTION = 1.0f - 0.001f; // plz set it from 0.990 to 0.999
 
     // collision w/ window
     sf::Vector2u windowSize = window.getSize();
@@ -83,14 +85,19 @@ void Particle::update(float dt, sf::RenderWindow& window, std::vector<Particle>&
         velocity.y = -velocity.y * DAMPING_FACTOR;
     }
 
-    // ground
+    // MARK: ground
     if (shape.getPosition().y + shape.getRadius() * 2 >= windowSize.y) {
         shape.setPosition(shape.getPosition().x, windowSize.y - shape.getRadius() * 2);
+
+        // prevenet infinite bouncing
         if (std::abs(velocity.y) < 1.0f) {
             velocity.y = 0;
         }else{
             velocity.y = -velocity.y * DAMPING_FACTOR;
         }
+
+        // ground friction
+        velocity.x *= GROUND_FRICTION;
     }
 
     // collision w/ other particles
