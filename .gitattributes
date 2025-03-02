@@ -2,3 +2,6 @@
 
 build/ -diff -merge
 build/ linguist-generated=true
+
+demo/ -diff -merge
+demo/ linguist-generated=true
