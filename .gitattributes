@@ -1,0 +1,4 @@
+* text=auto
+
+build/ -diff -merge
+build/ linguist-generated=true
