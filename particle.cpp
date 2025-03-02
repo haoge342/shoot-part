@@ -57,6 +57,11 @@ void Particle::resolveCollision(Particle& other) {
 
     velocity -= impulse * normal;
     other.velocity += impulse * normal;
+
+    // ensure particles don't overlap
+    float overlap = shape.getRadius() + other.shape.getRadius() - d;
+    shape.move(normal * overlap / 2.0f);
+    other.shape.move(normal * -overlap / 2.0f);
 }
 
 void Particle::update(float dt, sf::RenderWindow& window, std::vector<Particle>& particles) {
