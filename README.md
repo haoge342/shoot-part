@@ -1,9 +1,7 @@
 This is a project run on WSL2 machine.
 
 ## Demo
-<video width="320" height="240" controls>
-  <source src="demo/shoot-part-demo-01.mp4" type="video/mp4">
-</video>
+![Demo](./demo/shoot-part-demo-01.gif)
 
 ## Pre-requisite
 1. Install WSL2
