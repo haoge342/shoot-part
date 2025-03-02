@@ -3,7 +3,7 @@
 #include <cstdlib>
 
 // MARK: constructor
-Particle::Particle(float x, float y, float targetX, float targetY, float globalAnimationSpeed) {
+Particle::Particle(float x, float y, float targetX, float targetY, float initialSpeed, float globalAnimationSpeed) {
     shape.setRadius(5);
     shape.setFillColor(sf::Color(rand() % 255, rand() % 255, rand() % 255));
     shape.setPosition(x, y);
@@ -17,7 +17,6 @@ Particle::Particle(float x, float y, float targetX, float targetY, float globalA
         direction /= length;
     }
 
-    float initialSpeed = 10.0f;
     velocity = direction * animationSpeed * initialSpeed;
 }
 

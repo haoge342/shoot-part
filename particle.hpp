@@ -9,7 +9,7 @@ public:
     sf::Vector2f velocity;
     float animationSpeed;
 
-    Particle(float x, float y, float targetX, float targetY, float globalAnimationSpeed);
+    Particle(float x, float y, float targetX, float targetY, float initialSpeed, float globalAnimationSpeed);
 
     void update(float dt, sf::RenderWindow& window, std::vector<Particle>& particles);
     bool checkCollision(Particle& other);
